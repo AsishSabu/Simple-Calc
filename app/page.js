@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { useState } from "react";
 
 export default function Home() {
@@ -25,6 +24,7 @@ export default function Home() {
     "+",
     "C",
   ];
+
   const handleClick = (b) => {
     if (b === "=") {
       try {
@@ -41,44 +41,39 @@ export default function Home() {
       setExpression(expression + b.toString());
     }
   };
+
   return (
-    <>
-      <div className="flex flex-col items-center justify-center border border-spacing-2 border-black h-screen bg-slate-200">
-        <div className="p-12 h-screen md:h-fit w-screen md:w-fit bg-gray-100 rounded-xl">
-          <h1 className="font-bold text-3xl mx-auto text-center mb-10 ">
-            Calculator
-          </h1>
-          <div className="rounded-t-xl  ">
-            <div>
-              <input
-                type="text"
-                className="w-full font-bold text-xl h-14 bg-slate-200 rounded-t-xl"
-                value={expression}
-                readOnly
-                disabled
-              />
-              <input
-                type="text"
-                className="w-full h-14  font-bold text-xl"
-                value={result}
-                readOnly
-                disabled
-              />
-            </div>
-            <div className="grid grid-cols-4 w-full bg-[#DFF2EB] rounded-b-xl">
-              {buttons.map((b, index) => (
-                <div
-                  className="col-span-1 mx-auto p-4 text-xl font-bold text-center border border-spacing-1 w-full hover:bg-gray-500"
-                  key={index}
-                  onClick={() => handleClick(b)}
-                >
-                  {b}
-                </div>
-              ))}
-            </div>
-          </div>
+    <div className="flex items-center justify-center h-screen bg-gradient-to-br from-gray-100 to-slate-300">
+      <div className="p-6 w-full max-w-sm  bg-white shadow-lg rounded-lg">
+        <h1 className="font-bold text-3xl text-center mb-6 text-gray-800">Calculator</h1>
+        <div className="mb-4">
+          <input
+            type="text"
+            className="w-full text-right text-lg font-bold h-12 bg-gray-200 rounded-t-md p-2"
+            value={expression}
+            readOnly
+            disabled
+          />
+          <input
+            type="text"
+            className="w-full text-right text-2xl font-bold h-14 bg-gray-300 rounded-b-md p-2"
+            value={result}
+            readOnly
+            disabled
+          />
+        </div>
+        <div className="grid grid-cols-4 gap-2">
+          {buttons.map((b, index) => (
+            <button
+              key={index}
+              className="p-4 font-bold text-xl bg-gray-200 rounded-lg shadow-md hover:bg-gray-300 active:bg-gray-400 transition-all focus:outline-none"
+              onClick={() => handleClick(b)}
+            >
+              {b}
+            </button>
+          ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }
